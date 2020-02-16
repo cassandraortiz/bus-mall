@@ -49,7 +49,9 @@ function setupImages(){
     newArray = [];
 
     // loops through each Image and applies the information
-    for (var i = 1; i < 4; i++){
+    //alert(imgSection.childElementCount+1);
+
+    for (var i = 1; i < imgSection.childElementCount+1; i++){
         var objectName = `img${i}`;
         var indexID = `pic${i}`;
         newArray.push(eval(indexID));
