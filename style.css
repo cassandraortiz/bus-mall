@@ -71,6 +71,14 @@ p{
     color: darkblue;
 }
 
+#barChart{
+    border: darkblue 2px solid;
+    background-color: white;
+    width: fit-content;
+    max-width: 85%;
+    height: fit-content;
+}
+
 footer{
     width: 100%;
     background-color: darkblue;
