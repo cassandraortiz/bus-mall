@@ -28,7 +28,6 @@ function setupPictures(numberPictures){
   for(var p = 1; p <= numberPictures; p++){
     var testImage = document.createElement('img');
     testImage.id = `img${p}`;
-    console.log(`img${p}`);
     imgSection.appendChild(testImage);
   }
 }
@@ -75,53 +74,39 @@ function getRGBA(){
 
   return `rgba(${r},${b},${g},${a})`;
 }
+
+function uniqueNumber(array, number){
+  var unique = true;
+  if(array.includes(number)){
+    console.log(`this number: ${number} was found in: ${array}`);
+    unique = false;
+  }
+  return unique;
+}
+
 //=====================================
-
-
+// DISPLAY all the Random Photos
+// -- sets up Dynamic number of photos
+// -- varifies unique number (based on unique times clicked)
+// -- invoke the function
+//------------------------
 function displayImages(){
+
   var displayArray = [];
   var max = allItems.length;
 
-  
+  for(var pic = 0; pic < testImages; pic++){
+    var randoPic = randomNumber(max);
 
-  do{
-    //displayArray = [];
-    
-    for(var pic = 0; pic < testImages; pic++){
-      var randoPic = randomNumber(max);
-  
-      while (prevArray.includes(randoPic)){
-        randoPic = randomNumber(max);
-      }
-      
-      if (displayArray.includes(randoPic)){
-        displayArray.splice(displayArray.indexOf(randoPic),1);
-      } else if (displayArray.length < testImages){
-        displayArray.push(randoPic);
-      } else {
-        displayArray.push(randoPic);
-      }
-
+    while(!uniqueNumber(displayArray,randoPic) || !uniqueNumber(prevArray,randoPic)){
+      randoPic = randomNumber(max);
     }
-    // for(var pic = 0; pic < testImages; pic++){
-    //   var randoPic = randomNumber(max);
 
-    //   if(displayArray.includes(randoPic)){
-    //     displayArray[displayArray.indexOf(randoPic)] = randomNumber(max);
-    //   } else if (displayArray.length === testImages-1){
-    //     displayArray.shift();
-    //     displayArray.push(randoPic);
-    //   } else {
-    //     displayArray.push(randoPic);
-    //   }
-    // }
-  } while (displayArray.length === testImages-1);{
-    console.log(`while: prevArray: ${prevArray}  Display array: ${displayArray}`);
-  }
+    displayArray.push(randoPic);
+    var i = pic +1;
 
-  for (var i = 1; i <= testImages; i++){
     var imgID = `img${i}`;
-    var indexID = displayArray[i-1];
+    var indexID = displayArray[pic];
     var imgElement = document.getElementById(imgID);
     var uniqueImages = uniqueClicks * testImages;
 
@@ -140,71 +125,13 @@ function displayImages(){
   }
 }
 
-
 displayImages();
 
-
-// // setup the Images
-// function setupImages(){
-//   var showArray = [];
-//   // keep randomizing Images (until)
-//   do{
-
-//     for(var z = 0; z < testImages; z++){
-//       var number = randomNumber(allItems.length);
-//       if (!showArray.includes(number)){
-//         showArray[z] = number;
-//       }
-//     }
-//     // var pic1 = randomNumber(allItems.length);
-//     // var pic2 = randomNumber(allItems.length);
-//     // var pic3 = randomNumber(allItems.length);
-
-//     // if pics equal to each other -- random number is included in array
-//     // - add viewed tally to the object
-//   } while (newArray.includes(showArray)){
-//   //   for(var q = 0; q <= testImages; q++){
-//   //     allItems[showArray[q]].viewed ++;
-//   //   }
-//   // }
-//   // } while (pic1 === pic2 || pic2 === pic3 || pic1 === pic3 || newArray.includes(pic1) || newArray.includes(pic2) || newArray.includes(pic3));{
-//   //   allItems[pic1].viewed++;
-//   //   allItems[pic2].viewed++;
-//   //   allItems[pic3].viewed++;
-//   // }
-
-//   // loops through each Image and applies the information
-//   // var numberImages = imgSection.childElementCount;
-
-//   for (var i = 1; i <= testImages; i++){
-//     var objectName = `img${i}`;
-//     var indexID = `pic${i}`;
-
-//     var element = document.getElementById(objectName);
-//     var picShown = uniqueClicks * testImages;
-
-//       if(newArray.length === picShown){
-//         newArray.shift();
-//         newArray.push(eval(indexID));
-//       } else {
-//         newArray.push(eval(indexID));
-//       }
-
-//     element.src = allItems[eval(indexID)].src;
-//     element.title = allItems[eval(indexID)].title;
-//     element.alt = allItems[eval(indexID)].alt;
-//     allItems[eval(indexID)].viewed ++;
-
-
-//     // eval(objectName).src = allItems[eval(indexID)].src;
-//     // eval(objectName).title = allItems[eval(indexID)].title;
-//     // eval(objectName).alt = allItems[eval(indexID)].alt;
-//   }
-// }
-
-
-
-
+//=====================================
+// ON CLICK EVENT - pictureSection
+// -- limit to 25 clicks
+// -- display results (both list & chart) after limit
+//------------------------
 imgSection.addEventListener('click', handleclick);
 
 function handleclick(e){
@@ -217,20 +144,21 @@ function handleclick(e){
         allItems[i].clicked++;
       }
     }
-
     displayImages();
     timesClicked++;
-
   } else if (timesClicked === 25) {
     reportInfo();
     renderCanvas();
     timesClicked++;
   }
-
 }
+//------------------------
 
-
-
+//=====================================
+// RENDER INFORMATION
+// -- DOM - Add to UnOrdered List in section: resultsList
+// -- adds information to canvas: barChart
+//------------------------
 function reportInfo(){
   for(var i= 0; i<allItems.length; i++){
     var listItem = document.createElement('li'); // create my table Row
@@ -243,9 +171,6 @@ function reportInfo(){
     resultList.appendChild(listItem); // add the table to my global table body\
   }
 }
-
-
-
 
 function renderCanvas(){
   var ctx = document.getElementById('barChart');
@@ -260,3 +185,4 @@ function renderCanvas(){
     options: {scales:{yAxes: [{ticks: {beginAtZero: true}}]}}
   });
 }
+//------------------------
