@@ -73,8 +73,9 @@ p{
 
 #barChart{
     border: darkblue 2px solid;
-    background-color: darkcyan;
-    width: 90%;
+    background-color: white;
+    width: fit-content;
+    max-width: 85%;
     height: fit-content;
 }
 

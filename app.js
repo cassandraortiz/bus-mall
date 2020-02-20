@@ -13,6 +13,8 @@ var newArray = [];
 var labelArray = [];
 var viewsArray = [];
 var votesArray = [];
+var color1Array = [];
+var color2Array = [];
 var timesClicked = 0;
 
 
@@ -23,6 +25,7 @@ function ItemImage(src, alt, title){
   this.title = title;
   this.clicked = 0;
   this.viewed = 0;
+  this.backgroundColor = getRGBA();
   allItems.push(this);
 }
 
@@ -66,14 +69,15 @@ function setupImages(){
     var clicks = 2;
     var picShown = clicks * numberImages;
 
-    if(newArray.length >= picShown){
-      newArray.unshift(eval(indexID));
+    if(newArray.length === picShown){
+      console.log('unshifting:');
+      newArray.shift();
+      newArray.push(eval(indexID));
     } else {
+      console.log('pushing:');
       newArray.push(eval(indexID));
     }
 
-    console.log(newArray);
-    
     eval(objectName).src = allItems[eval(indexID)].src;
     eval(objectName).title = allItems[eval(indexID)].title;
     eval(objectName).alt = allItems[eval(indexID)].alt;
@@ -122,10 +126,26 @@ function reportInfo(){
     viewsArray[i] = allItems[i].viewed;
     votesArray[i] = allItems[i].clicked;
     labelArray[i] = allItems[i].title;
+    color1Array[i] = getRGBA();
+    color2Array[i] = getRGBA();
     listItem.textContent = `${allItems[i].title}:  ${allItems[i].clicked} votes  --  viewed ${allItems[i].viewed} times. `;
     resultList.appendChild(listItem); // add the table to my global table body\
   }
 }
+
+function randoColor(){
+  return Math.floor(Math.random() * 255);
+}
+
+function getRGBA(){
+  var r = randoColor();
+  var b = randoColor();
+  var g = randoColor();
+  var a = Math.random();
+
+  return `rgba(${r},${b},${g},${a})`;
+}
+
 
 function renderCanvas(){
 var ctx = document.getElementById('barChart');
@@ -134,24 +154,10 @@ var myChart = new Chart(ctx, {
   data: {
       labels: labelArray,
       datasets: [{
-          label: '# of Votes',
+          label: '# of Clicks per View',
           data: viewsArray,
-          backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)'
-          ],
-          borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)'
-          ],
+          backgroundColor: color1Array,
+          borderColor: color2Array,
           borderWidth: 1
       }]
   },
