@@ -32,8 +32,10 @@ BRANCH |  [Lab11-busmall](https://canvas.instructure.com/courses/1791697/assignm
 
 
 BRANCH: [chartjs](https://canvas.instructure.com/courses/1791697/assignments/13320252)
- - Pull Request: [#2-4]()
+ - Pull Request: [#2](https://github.com/cassandraortiz/bus-mall/pull/2)
  - Commits
+   - 7cd58eaf0d3767a76f0a45ac81575af686b32c3d
+   - 8004b94acdf5355db0b0ae72518440d194283573
 
 ---
 
