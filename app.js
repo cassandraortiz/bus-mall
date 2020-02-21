@@ -171,8 +171,8 @@ function startSurvey(e){
   takeAgain.style.display = 'none';
   chartElement.style.display = 'none';
   imgSection.style.display = 'inline-flex';
-
-  displayImages()
+  timesClicked = 0;
+  displayImages();
 }
 //------------------------
 
