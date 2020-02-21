@@ -1,15 +1,10 @@
 'use strict';
 
-var img1 = document.getElementById('img1');
-var img2 = document.getElementById('img2');
-var img3 = document.getElementById('img3');
 var imgSection = document.getElementById('pictureSection');
 var resultList = document.getElementById('resultsList');
 
-var ImageList = ['bag','banana', 'bathroom','boots', 'breakfast', 'bubblegum', 'chair','cthulhu','dog-duck','dragon','pen','pet-sweep','scissors','shark','sweep','tauntaun','unicorn','usb','water-can','wine-glass'];
 var allItems = [];
-//var prevItem = [];
-var newArray = [];
+var prevArray = [];
 var labelArray = [];
 var viewsArray = [];
 var votesArray = [];
@@ -17,8 +12,28 @@ var color1Array = [];
 var color2Array = [];
 var timesClicked = 0;
 
+var testImages = 3;
+var uniqueClicks = 2;
 
-// Object Function
+//================================================
+// Setups the Number of pictures to be selected
+// - adds to section: pictureSection
+// - invokes function
+//------------------------
+function setupPictures(numberPictures){
+  for(var p = 1; p <= numberPictures; p++){
+    var testImage = document.createElement('img');
+    testImage.id = `img${p}`;
+    imgSection.appendChild(testImage);
+  }
+}
+
+setupPictures(testImages);
+
+//=====================================
+// [Object]  ItemImage
+// -- holds the information about the Image
+//------------------------
 function ItemImage(src, alt, title){
   this.src = src;
   this.alt = alt;
@@ -29,72 +44,90 @@ function ItemImage(src, alt, title){
   allItems.push(this);
 }
 
+var ImageList = ['bag','banana', 'bathroom','boots', 'breakfast', 'bubblegum', 'chair','cthulhu','dog-duck','dragon','pen','pet-sweep','scissors','shark','sweep','tauntaun','unicorn','usb','water-can','wine-glass'];
 
-// randomizes the image index
-function randomImage(max){
+// Creates Objects 'ItemImage'
+// - Loops through ImageList array
+//----------------------------------
+for (var x = 0; x < ImageList.length; x++){
+  var imgName = ImageList[x];
+  var src = `img/${imgName}.jpg`;
+  new ItemImage(src, imgName, imgName);
+}
+
+//=====================================
+// RANDOM FUNCTIONS
+//---------------------
+function randomNumber(max){
   return Math.floor(Math.random() * max);
 }
 
-// setup the Images
-function setupImages(){
+function getRGBA(){
+  var r = randomNumber(255);
+  var b = randomNumber(255);
+  var g = randomNumber(255);
+  var a = Math.random();
 
-  // keep randomizing Images (until)
-  do{
-    var pic1 = randomImage(allItems.length);
-    var pic2 = randomImage(allItems.length);
-    var pic3 = randomImage(allItems.length);
+  return `rgba(${r},${b},${g},${a})`;
+}
 
-    // if pics equal to each other -- random number is included in array
-    // - add viewed tally to the object
-  } while (pic1 === pic2 || pic2 === pic3 || pic1 === pic3 || newArray.includes(pic1) || newArray.includes(pic2) || newArray.includes(pic3));{
-    allItems[pic1].viewed++;
-    allItems[pic2].viewed++;
-    allItems[pic3].viewed++;
+function uniqueNumber(array, number){
+  var unique = true;
+  if(array.includes(number)){
+    console.log(`this number: ${number} was found in: ${array}`);
+    unique = false;
   }
+  return unique;
+}
 
-  // reset the New array
-  // newArray = [];
+//=====================================
+// DISPLAY all the Random Photos
+// -- sets up Dynamic number of photos
+// -- varifies unique number (based on unique times clicked)
+// -- invoke the function
+//------------------------
+function displayImages(){
 
-  // loops through each Image and applies the information
-  //alert(imgSection.childElementCount+1);
+  var displayArray = [];
+  var max = allItems.length;
 
-  var numberImages = imgSection.childElementCount;
+  for(var pic = 0; pic < testImages; pic++){
+    var randoPic = randomNumber(max);
 
-  for (var i = 1; i < numberImages + 1; i++){
-    var objectName = `img${i}`;
-    var indexID = `pic${i}`;
-
-    // adds to newArray max 2 turns
-
-    var clicks = 2;
-    var picShown = clicks * numberImages;
-
-    if(newArray.length === picShown){
-      console.log('unshifting:');
-      newArray.shift();
-      newArray.push(eval(indexID));
-    } else {
-      console.log('pushing:');
-      newArray.push(eval(indexID));
+    while(!uniqueNumber(displayArray,randoPic) || !uniqueNumber(prevArray,randoPic)){
+      randoPic = randomNumber(max);
     }
 
-    eval(objectName).src = allItems[eval(indexID)].src;
-    eval(objectName).title = allItems[eval(indexID)].title;
-    eval(objectName).alt = allItems[eval(indexID)].alt;
+    displayArray.push(randoPic);
+    var i = pic +1;
+
+    var imgID = `img${i}`;
+    var indexID = displayArray[pic];
+    var imgElement = document.getElementById(imgID);
+    var uniqueImages = uniqueClicks * testImages;
+
+    if(prevArray.length === uniqueImages){
+      prevArray.shift();
+      prevArray.push(indexID);
+    } else {
+      prevArray.push(indexID);
+    }
+
+    // Applys image element requirements
+    imgElement.src = allItems[indexID].src;
+    imgElement.title = allItems[indexID].title;
+    imgElement.alt = allItems[indexID].alt;
+    allItems[indexID].viewed ++;
   }
 }
 
+displayImages();
 
-// this sets up all my images - based on the array 'ImageList'
-for (var x = 0; x < ImageList.length; x++){
-  var name = ImageList[x];
-  var src = `img/${name}.jpg`;
-  new ItemImage(src, name, name);
-}
-
-// Call initial Image Setup
-setupImages(allItems.length);
-
+//=====================================
+// ON CLICK EVENT - pictureSection
+// -- limit to 25 clicks
+// -- display results (both list & chart) after limit
+//------------------------
 imgSection.addEventListener('click', handleclick);
 
 function handleclick(e){
@@ -107,19 +140,21 @@ function handleclick(e){
         allItems[i].clicked++;
       }
     }
-
-    setupImages();
+    displayImages();
     timesClicked++;
-
   } else if (timesClicked === 25) {
     reportInfo();
     renderCanvas();
     timesClicked++;
   }
-
 }
+//------------------------
 
-
+//=====================================
+// RENDER INFORMATION
+// -- DOM - Add to UnOrdered List in section: resultsList
+// -- adds information to canvas: barChart
+//------------------------
 function reportInfo(){
   for(var i= 0; i<allItems.length; i++){
     var listItem = document.createElement('li'); // create my table Row
@@ -133,42 +168,17 @@ function reportInfo(){
   }
 }
 
-function randoColor(){
-  return Math.floor(Math.random() * 255);
-}
-
-function getRGBA(){
-  var r = randoColor();
-  var b = randoColor();
-  var g = randoColor();
-  var a = Math.random();
-
-  return `rgba(${r},${b},${g},${a})`;
-}
-
-
 function renderCanvas(){
-var ctx = document.getElementById('barChart');
-var myChart = new Chart(ctx, {
-  type: 'bar',
-  data: {
-      labels: labelArray,
-      datasets: [{
-          label: '# of Clicks per View',
-          data: viewsArray,
-          backgroundColor: color1Array,
-          borderColor: color2Array,
-          borderWidth: 1
-      }]
-  },
-  options: {
-      scales: {
-          yAxes: [{
-              ticks: {
-                  beginAtZero: true
-              }
-          }]
-      }
-  }
-});
+  var ctx = document.getElementById('barChart');
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {labels: labelArray,
+      datasets: [{label: '# of Clicks per View',
+        data: viewsArray,
+        backgroundColor: color1Array,
+        borderColor: color2Array,
+        borderWidth: 1}]},
+    options: {scales:{yAxes: [{ticks: {beginAtZero: true}}]}}
+  });
 }
+//------------------------
