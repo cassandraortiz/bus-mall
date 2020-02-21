@@ -6,6 +6,7 @@ var resultSection = document.getElementById('result');
 var resultList = document.getElementById('resultsList');
 var welcomeSection = document.getElementById('welcome');
 var takeQuiz = document.getElementById('takeQuiz');
+var takeAgain = document.getElementById('takeAgain');
 var imgHeader = document.getElementById('imageHeader');
 var chartElement = document.getElementById('barChart');
 
@@ -159,6 +160,7 @@ function handleclick(e){
 }
 
 takeQuiz.addEventListener('click', startSurvey);
+takeAgain.addEventListener('click', startSurvey);
 
 function startSurvey(e){
   welcomeSection.style.display = 'none';
@@ -166,6 +168,7 @@ function startSurvey(e){
   resultSection.style.display = 'none';
   document.getElementById('finishStatement').style.display = 'none';
   imgHeader.textContent = 'Please select your favorite image';
+  takeAgain.style.display = 'none';
 }
 //------------------------
 
@@ -194,6 +197,7 @@ function startPage(){
   surveySection.style.display = 'none';
   resultSection.style.display = 'none';
   chartElement.style.display = 'none';
+  takeAgain.style.display = 'none';
 
 }
 
@@ -203,8 +207,10 @@ function hidePictures(){
 
   // document.getElementById('startStatement').style.display = 'none';
   document.getElementById('finishStatement').style.display = 'block';
+  resultSection.style.display = 'block';
+  chartElement.style.display = 'block';
   imgHeader.textContent = 'This survey has been concluded';
-
+  takeAgain.style.display = 'block';
 }
 
 function renderCanvas(){
@@ -212,8 +218,8 @@ function renderCanvas(){
   var myChart = new Chart(ctx, {
     type: 'bar',
     data: {labels: labelArray,
-      datasets: [{label: '# of Clicks per View',
-        data: viewsArray,
+      datasets: [{label: 'Votes perView',
+        data: votesArray,
         backgroundColor: color1Array,
         borderColor: color2Array,
         borderWidth: 1}]},
