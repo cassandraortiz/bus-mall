@@ -130,7 +130,7 @@ function displayImages(){
   }
 }
 
-displayImages();
+// displayImages();
 
 //=====================================
 // ON CLICK EVENT - pictureSection
@@ -169,6 +169,10 @@ function startSurvey(e){
   document.getElementById('finishStatement').style.display = 'none';
   imgHeader.textContent = 'Please select your favorite image';
   takeAgain.style.display = 'none';
+  chartElement.style.display = 'none';
+  imgSection.style.display = 'inline-flex';
+
+  displayImages()
 }
 //------------------------
 
@@ -198,6 +202,7 @@ function startPage(){
   resultSection.style.display = 'none';
   chartElement.style.display = 'none';
   takeAgain.style.display = 'none';
+  
 
 }
 
