@@ -2,34 +2,42 @@
 <html>
     <head>
         <title>Bus Mall</title>
+        <link href="https://fonts.googleapis.com/css?family=Calligraffitti&display=swap" rel="stylesheet">
         <link href="reset.css" type="text/css" rel="stylesheet">
         <link href="style.css" type="text/css" rel="stylesheet">
     </head>
     <body>
         <header>
-            <img id="Logo" src="img/busmall.png" alt="busLogo" title="Logo" width="100px" height="70px">
-            <h1>BUS MALL</h1>
+            <img id="Logo" src="img/logo.jpg" alt="busLogo" title="Logo" width="100px" height="70px">
+            <h1>Bus Mall</h1>
         </header>
         <main>
-            <div id="displayField">
+            <div id="mainSection">
                 <section id="result">
-                    <h2>RESULTS</h2>
+                    <h2 id="resultsHeader"></h2>
                     <ul id="resultsList">
                         <!--DOM list item-->
                     </ul>
+                </section> 
+                <section id="welcome">
+                    <h2>Welcome to Bus Mall</h2>
+                    <div id="aboutBusMall">
+                        <p>BusMall is a catalog of assorted high-markup products provided to a captive audience seeking a mental escape from the drudgery of travel on busses.</p>
+                        <p>BusMall wants to feature only the items in its catalog that are the most likely to sell.  Currently, this website is doing marketing analysis to test their potential customer items of interest.</p>
+                        <p>Your feedback is important to us! Please participate in our survey to offer you the best products available.</p>
+                    </div>
+                    <button id="takeQuiz">Start Survey</button>
                 </section>
-                <div>
+                <section id="surveySection">
+                    <h2 id = "imageHeader"></h2>
                     <section id="pictureSection">
                         <!-- DOM <img id="img#" src="" alt="" title=""> -->
                     </section>
-                    <p>Thanks for participating in our first ever Bus Mall feedback.  You will need to select which image above is your favorite of the randomly choosen photos.  After a series of selections (25) you will be shown your results on the lefthand side of the page.  If you would like to redo this feedback, please just refresh your webpage and start over.  Happy Busing!</p>
-                </div>
+                    <p id = 'finishStatement'>Thanks for participating in our first ever Bus Mall feedback.  You will need to select which image above is your favorite of the randomly choosen photos.  After a series of selections (25) you will be shown your results on the lefthand side of the page.  If you would like to redo this feedback, please just refresh your webpage and start over.  Happy Busing!</p>
+                </section>
+                <canvas id="barChart"></canvas>
             </div>
-            <canvas id="barChart"></canvas>
         </main>
-        <footer>
-
-        </footer>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
         <script src="app.js"></script>
     </body>

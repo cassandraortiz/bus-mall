@@ -1,7 +1,13 @@
 'use strict';
 
 var imgSection = document.getElementById('pictureSection');
+var surveySection = document.getElementById('surveySection');
+var resultSection = document.getElementById('result');
 var resultList = document.getElementById('resultsList');
+var welcomeSection = document.getElementById('welcome');
+var takeQuiz = document.getElementById('takeQuiz');
+var imgHeader = document.getElementById('imageHeader');
+var chartElement = document.getElementById('barChart');
 
 var allItems = [];
 var prevArray = [];
@@ -14,6 +20,8 @@ var timesClicked = 0;
 
 var testImages = 3;
 var uniqueClicks = 2;
+
+startPage();
 
 //================================================
 // Setups the Number of pictures to be selected
@@ -143,10 +151,21 @@ function handleclick(e){
     displayImages();
     timesClicked++;
   } else if (timesClicked === 25) {
+    hidePictures();
     reportInfo();
     renderCanvas();
     timesClicked++;
   }
+}
+
+takeQuiz.addEventListener('click', startSurvey);
+
+function startSurvey(e){
+  welcomeSection.style.display = 'none';
+  surveySection.style.display = 'block';
+  resultSection.style.display = 'none';
+  document.getElementById('finishStatement').style.display = 'none';
+  imgHeader.textContent = 'Please select your favorite image';
 }
 //------------------------
 
@@ -157,6 +176,8 @@ function handleclick(e){
 //------------------------
 function reportInfo(){
   for(var i= 0; i<allItems.length; i++){
+    var resultHdr = document.getElementById('resultsHeader');
+    resultHdr.textContent = 'RESULTS';
     var listItem = document.createElement('li'); // create my table Row
     viewsArray[i] = allItems[i].viewed;
     votesArray[i] = allItems[i].clicked;
@@ -166,6 +187,24 @@ function reportInfo(){
     listItem.textContent = `${allItems[i].title}:  ${allItems[i].clicked} votes  --  viewed ${allItems[i].viewed} times. `;
     resultList.appendChild(listItem); // add the table to my global table body\
   }
+}
+
+function startPage(){
+  welcomeSection.style.display = 'block';
+  surveySection.style.display = 'none';
+  resultSection.style.display = 'none';
+  chartElement.style.display = 'none';
+
+}
+
+function hidePictures(){
+  imgSection.style.display = 'none';
+  var imgHeader = document.getElementById('imageHeader');
+
+  // document.getElementById('startStatement').style.display = 'none';
+  document.getElementById('finishStatement').style.display = 'block';
+  imgHeader.textContent = 'This survey has been concluded';
+
 }
 
 function renderCanvas(){

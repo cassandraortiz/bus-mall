@@ -61,4 +61,6 @@ Currently, code demos during Class 11 & 12 have helped guide working in this web
 
 [Chart.js](https://www.chartjs.org/docs/latest/) \| Used for Bar chart
 
+[show/hide elements](https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp) \| reference on how to use JavaScript to hide/show elements on page.
+
 ---
