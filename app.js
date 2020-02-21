@@ -1,7 +1,14 @@
 'use strict';
 
 var imgSection = document.getElementById('pictureSection');
+var surveySection = document.getElementById('surveySection');
+var resultSection = document.getElementById('result');
 var resultList = document.getElementById('resultsList');
+var welcomeSection = document.getElementById('welcome');
+var takeQuiz = document.getElementById('takeQuiz');
+var takeAgain = document.getElementById('takeAgain');
+var imgHeader = document.getElementById('imageHeader');
+var chartElement = document.getElementById('barChart');
 
 var allItems = [];
 var prevArray = [];
@@ -14,6 +21,8 @@ var timesClicked = 0;
 
 var testImages = 3;
 var uniqueClicks = 2;
+
+startPage();
 
 //================================================
 // Setups the Number of pictures to be selected
@@ -121,7 +130,7 @@ function displayImages(){
   }
 }
 
-displayImages();
+// displayImages();
 
 //=====================================
 // ON CLICK EVENT - pictureSection
@@ -143,10 +152,27 @@ function handleclick(e){
     displayImages();
     timesClicked++;
   } else if (timesClicked === 25) {
+    hidePictures();
     reportInfo();
     renderCanvas();
     timesClicked++;
   }
+}
+
+takeQuiz.addEventListener('click', startSurvey);
+takeAgain.addEventListener('click', startSurvey);
+
+function startSurvey(e){
+  welcomeSection.style.display = 'none';
+  surveySection.style.display = 'block';
+  resultSection.style.display = 'none';
+  document.getElementById('finishStatement').style.display = 'none';
+  imgHeader.textContent = 'Please select your favorite image';
+  takeAgain.style.display = 'none';
+  chartElement.style.display = 'none';
+  imgSection.style.display = 'inline-flex';
+
+  displayImages()
 }
 //------------------------
 
@@ -157,6 +183,8 @@ function handleclick(e){
 //------------------------
 function reportInfo(){
   for(var i= 0; i<allItems.length; i++){
+    var resultHdr = document.getElementById('resultsHeader');
+    resultHdr.textContent = 'RESULTS';
     var listItem = document.createElement('li'); // create my table Row
     viewsArray[i] = allItems[i].viewed;
     votesArray[i] = allItems[i].clicked;
@@ -168,13 +196,35 @@ function reportInfo(){
   }
 }
 
+function startPage(){
+  welcomeSection.style.display = 'block';
+  surveySection.style.display = 'none';
+  resultSection.style.display = 'none';
+  chartElement.style.display = 'none';
+  takeAgain.style.display = 'none';
+  
+
+}
+
+function hidePictures(){
+  imgSection.style.display = 'none';
+  var imgHeader = document.getElementById('imageHeader');
+
+  // document.getElementById('startStatement').style.display = 'none';
+  document.getElementById('finishStatement').style.display = 'block';
+  resultSection.style.display = 'block';
+  chartElement.style.display = 'block';
+  imgHeader.textContent = 'This survey has been concluded';
+  takeAgain.style.display = 'block';
+}
+
 function renderCanvas(){
   var ctx = document.getElementById('barChart');
   var myChart = new Chart(ctx, {
     type: 'bar',
     data: {labels: labelArray,
-      datasets: [{label: '# of Clicks per View',
-        data: viewsArray,
+      datasets: [{label: 'Votes perView',
+        data: votesArray,
         backgroundColor: color1Array,
         borderColor: color2Array,
         borderWidth: 1}]},
