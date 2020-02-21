@@ -1,11 +1,14 @@
 html{
     text-align: center;
     width: 960;
+    background-image: url(img/mountains.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 header{
     width: 100%;
-    background-color: darkblue;
+    /* background-color: darkblue; */
     color: white;
     padding: .5%;
     display: inline-flex;
@@ -17,12 +20,13 @@ h1{
 }
 
 header img{
-    border: black 1px solid;
+    /* border: black 1px solid; */
     
 }
 #displayField{
     width: 100%;
     display: inline-flex;
+    padding-left: 2%;
 }
 
 
@@ -46,15 +50,22 @@ h2{
 
 #pictureSection{
     display: inline-flex;
-    width: 100%;
+    width: 80%;
     height: fit-content;
     margin: 0% auto;
+    padding: 2%;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 139,.5);
+    
 }
 
 #pictureSection img{
     border: darkblue 2px solid;
-    width: 33%;
-    max-height: 400px;
+    /* width: 33%; */
+    border-radius: 10;
+    min-width: 150px;
+    max-width: 250px;
+    max-height: 250px;
 }
 
 ul{

@@ -1,11 +1,7 @@
 'use strict';
 
-// var img1 = document.getElementById('img1');
-// var img2 = document.getElementById('img2');
-// var img3 = document.getElementById('img3');
 var imgSection = document.getElementById('pictureSection');
 var resultList = document.getElementById('resultsList');
-
 
 var allItems = [];
 var prevArray = [];
@@ -14,8 +10,8 @@ var viewsArray = [];
 var votesArray = [];
 var color1Array = [];
 var color2Array = [];
-
 var timesClicked = 0;
+
 var testImages = 3;
 var uniqueClicks = 2;
 
