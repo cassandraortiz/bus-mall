@@ -163,8 +163,8 @@ takeAgain.addEventListener('click', startSurvey);
 
 function startSurvey(e){
 
-  while((var lis = resultList.getElementsByTagName("li")).length > 0) {
-    resultList.removeChild(lis[0]);
+  while(resultList.childElementCount > 0) {
+    resultList.removeChild(resultList.lastElementChild);
   }
 
   welcomeSection.style.display = 'none';
