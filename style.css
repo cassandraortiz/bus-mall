@@ -8,39 +8,85 @@ html{
     
 }
 
+/* HEADER SECTION
+=====================*/
 header{
     color: black;
     width: 100%;
     padding: .5%;
     display: inline-flex;
-    background-color: rgba(85, 86, 150, 0.5);
+    text-align: left;
     height: fit-content;
 }
 
 h1{
-    font-size: 45px;
-    margin-left: 20px;
-    font-family: 'Calligraffitti';
-    color: darkblue;
+    font-size: 80px;
+    font-family: 'Qwigley';
+    color: white;
     margin: auto 20px;
-    font-size: 65px;
-    font-weight: bolder;
+    width: 72%;
+}
+
+#takeAgain{
+    width: 200px;
+    height: 40px;
+    font-size: 24px;
+    float: right;
+    margin: auto 10px auto 0px;
+    border: darkblue solid 1px;
+    background-color: rgba(255, 255, 255, 0.75);
+    color: darkblue;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#takeAgain:hover{
+    color: green;
 }
 
 
+/* MAIN SECTION
+=====================*/
 
 #mainSection{
     display: inline-flex;
     background-color: rgba(255, 255, 255, .75);
-    margin-top: 5%;
-    width: 100%;
-    height: 50%;
     max-height: fit-content;
+    min-height: 500px;
     text-align: center;
     padding: 20px auto;
+    width: 100%;
 
 }
 
+/* RESULTS SECTION (TOP - SHOW FIRST)
+=====================*/
+#result{
+    padding: 20px;
+    text-align: center;
+    width: 40%;
+    max-width: fit-content;
+    color: darkblue;
+    overflow: visible;
+}
+
+#result h2{
+    text-decoration: underline;
+    font-size: large;
+    font-weight: bold;
+}
+
+
+ul{
+    text-align: right;
+}
+
+li{
+    padding: 5px;
+}
+
+
+/* WELCOME SECTION (MIDDLE - )
+=====================*/
 #welcome{
     text-align: center;
     padding: 30px;
@@ -50,6 +96,13 @@ h1{
 #welcome h2{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 36px;
+    color: darkblue;
+
+}
+
+p{
+    padding: 20px;
+    text-align: left;
     color: darkblue;
 }
 
@@ -64,87 +117,67 @@ h1{
     font-size: 24px;
 }
 
-#surveySection{
-    text-align: center;
-    padding: 30px;
-    margin: 5px auto;
-}
-
 #takeQuiz{
     width: 200px;
     height: 70px;
-    font-size: 30px;
+    font-size: 50px;
     background-color: rgba(255, 255, 255, 0.75);
-}
-
-#takeAgain{
-    width: 200px;
-    height: 40px;
-    font-size: 20px;
-    float: right;
-    background-color: rgba(255, 255, 255, 0.75);
-}
-
-#result{
-    padding: 20px;
-    text-align: center;
-    width: 40%;
-    max-width: fit-content;
     color: darkblue;
-    overflow: visible;
+    font-family: 'Qwigley';
 }
 
-h2{
-    text-decoration: underline;
-    font-size: large;
-    font-weight: bold;
+#takeQuiz:hover{
+    color: green;
 }
 
+
+/* SURVEY SECTION (BOTTOM - CHART)
+=====================*/
+
+#surveySection{
+    text-align: center;
+    margin: 5px auto;
+}
+
+#imageHeader{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 36px;
+    color: darkblue;
+    margin-bottom: 20px;
+}
+
+/* PICTURE SECTIONS
+=====================*/
 #pictureSection{
     display: inline-flex;
-    width: 80%;
     height: fit-content;
     margin: 0% auto;
     padding: 2%;
     justify-content: space-between;
     background-color: rgba(0, 0, 139,.5);
-    
 }
 
 #pictureSection img{
     border: darkblue 2px solid;
-    /* width: 33%; */
     border-radius: 10;
     min-width: 150px;
     max-width: 250px;
     max-height: 250px;
 }
 
-ul{
-    text-align: right;
-}
-
-li{
-    padding: 5px;
-}
-
-p{
-    padding: 20px;
-    text-align: left;
-    color: darkblue;
+.finishStatement{
+    width: 70%;
+    text-align: center;
+    margin: 5px auto;
 }
 
 #barChart{
     margin: 20px auto;
     border: darkblue 2px solid;
-    background-color: white;
     width: fit-content;
-    max-width: 80%;
+    max-width: 95%;
+    background-color: rgba(255, 255, 255, 0.5);
     height: fit-content;
-}
-
-#finishStatement{
-    width: 70%;
-    text-align: center;
-    margin: 5px auto;
+    color: darkblue;
+    font-size: 65px;
 }

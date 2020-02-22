@@ -83,7 +83,6 @@ function getRGBA(){
 function uniqueNumber(array, number){
   var unique = true;
   if(array.includes(number)){
-    console.log(`this number: ${number} was found in: ${array}`);
     unique = false;
   }
   return unique;
@@ -163,9 +162,15 @@ takeQuiz.addEventListener('click', startSurvey);
 takeAgain.addEventListener('click', startSurvey);
 
 function startSurvey(e){
+
+  while(resultList.childElementCount > 0) {
+    resultList.removeChild(resultList.lastElementChild);
+  }
+
   welcomeSection.style.display = 'none';
   surveySection.style.display = 'block';
   resultSection.style.display = 'none';
+  
   document.getElementById('finishStatement').style.display = 'none';
   imgHeader.textContent = 'Please select your favorite image';
   takeAgain.style.display = 'none';
@@ -202,7 +207,7 @@ function startPage(){
   resultSection.style.display = 'none';
   chartElement.style.display = 'none';
   takeAgain.style.display = 'none';
-  
+
 
 }
 
@@ -220,15 +225,25 @@ function hidePictures(){
 
 function renderCanvas(){
   var ctx = document.getElementById('barChart');
-  var myChart = new Chart(ctx, {
+  myChart = new Chart(ctx, {
     type: 'bar',
-    data: {labels: labelArray,
-      datasets: [{label: 'Votes perView',
+    data: {
+      labels: labelArray,
+      datasets: [{
+        label: 'Views',
+        data: viewsArray,
+        backgroundColor:'rgba(0, 0, 139,.5)',
+        borderColor: 'rgba(0, 0, 139,1)',
+        borderWidth: 1
+      },
+      {
+        label: 'Votes',
         data: votesArray,
-        backgroundColor: color1Array,
-        borderColor: color2Array,
-        borderWidth: 1}]},
-    options: {scales:{yAxes: [{ticks: {beginAtZero: true}}]}}
+        backgroundColor:'rgba(18, 90, 30, .5)',
+        borderColor: 'rgba(18, 90, 30,1)',
+        borderWidth: 1
+      }]
+    }
   });
 }
 //------------------------

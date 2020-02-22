@@ -63,4 +63,7 @@ Currently, code demos during Class 11 & 12 have helped guide working in this web
 
 [show/hide elements](https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp) \| reference on how to use JavaScript to hide/show elements on page.
 
+[further chart help](https://canvasjs.com/javascript-charts/multi-series-bar-chart/) \| reference for double bar chart information.
+
+[remove li from UL](https://www.sitepoint.com/community/t/dom-remove-all-li-from-ul/3145) \| used function to reset list items.
 ---
