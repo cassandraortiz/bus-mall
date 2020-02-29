@@ -43,13 +43,13 @@ setupPictures(testImages);
 // [Object]  ItemImage
 // -- holds the information about the Image
 //------------------------
-function ItemImage(src, alt, title){
+function ItemImage(src, alt, title, clicked = 0, viewed = 0){
   this.src = src;
   this.alt = alt;
   this.title = title;
-  this.clicked = 0;
-  this.viewed = 0;
-  this.backgroundColor = getRGBA();
+  this.clicked = clicked;
+  this.viewed = viewed;
+  // this.backgroundColor = getRGBA();
   allItems.push(this);
 }
 
@@ -57,11 +57,17 @@ var ImageList = ['bag','banana', 'bathroom','boots', 'breakfast', 'bubblegum', '
 
 // Creates Objects 'ItemImage'
 // - Loops through ImageList array
-//----------------------------------
+// - Sets up the chartArrays
+// - Sets up loop if the local storage doesnt exist
+//-------------------------------------------------
 for (var x = 0; x < ImageList.length; x++){
   var imgName = ImageList[x];
   var src = `img/${imgName}.jpg`;
-  new ItemImage(src, imgName, imgName);
+  viewsArray[x] = 0;
+  votesArray[x] = 0;
+  if (!localStorage.getItem('totalItems')){
+    new ItemImage(src, imgName, imgName);
+  }
 }
 
 //=====================================
@@ -170,7 +176,7 @@ function startSurvey(e){
   welcomeSection.style.display = 'none';
   surveySection.style.display = 'block';
   resultSection.style.display = 'none';
-  
+
   document.getElementById('finishStatement').style.display = 'none';
   imgHeader.textContent = 'Please select your favorite image';
   takeAgain.style.display = 'none';
@@ -191,14 +197,15 @@ function reportInfo(){
     var resultHdr = document.getElementById('resultsHeader');
     resultHdr.textContent = 'RESULTS';
     var listItem = document.createElement('li'); // create my table Row
-    viewsArray[i] = allItems[i].viewed;
-    votesArray[i] = allItems[i].clicked;
+    viewsArray[i] += allItems[i].viewed;
+    votesArray[i] += allItems[i].clicked;
     labelArray[i] = allItems[i].title;
     color1Array[i] = getRGBA();
     color2Array[i] = getRGBA();
     listItem.textContent = `${allItems[i].title}:  ${allItems[i].clicked} votes  --  viewed ${allItems[i].viewed} times. `;
     resultList.appendChild(listItem); // add the table to my global table body\
   }
+  saveLocalStorage();
 }
 
 function startPage(){
@@ -207,8 +214,6 @@ function startPage(){
   resultSection.style.display = 'none';
   chartElement.style.display = 'none';
   takeAgain.style.display = 'none';
-
-
 }
 
 function hidePictures(){
@@ -246,4 +251,26 @@ function renderCanvas(){
     }
   });
 }
+
+function saveLocalStorage(){
+  var saveItems = JSON.stringify(allItems);
+  localStorage.setItem('totalItems',saveItems);
+
+}
+
+function retrieveStorage(){
+  // if (localStorage.getItem('totalItems')) {
+    var storedItems = JSON.parse(localStorage.getItem('totalItems'));
+    for (var i = 0; i < storedItems.length; i++) {
+      new ItemImage(
+        storedItems[i].src,
+        storedItems[i].alt,
+        storedItems[i].title,
+        storedItems[i].clicked,
+        storedItems[i].viewed);
+    }
+  // }
+}
+
+retrieveStorage();
 //------------------------
