@@ -49,7 +49,6 @@ function ItemImage(src, alt, title, clicked = 0, viewed = 0){
   this.title = title;
   this.clicked = clicked;
   this.viewed = viewed;
-  // this.backgroundColor = getRGBA();
   allItems.push(this);
 }
 
@@ -135,7 +134,6 @@ function displayImages(){
   }
 }
 
-// displayImages();
 
 //=====================================
 // ON CLICK EVENT - pictureSection
@@ -220,7 +218,6 @@ function hidePictures(){
   imgSection.style.display = 'none';
   var imgHeader = document.getElementById('imageHeader');
 
-  // document.getElementById('startStatement').style.display = 'none';
   document.getElementById('finishStatement').style.display = 'block';
   resultSection.style.display = 'block';
   chartElement.style.display = 'block';
@@ -259,17 +256,15 @@ function saveLocalStorage(){
 }
 
 function retrieveStorage(){
-  // if (localStorage.getItem('totalItems')) {
-    var storedItems = JSON.parse(localStorage.getItem('totalItems'));
-    for (var i = 0; i < storedItems.length; i++) {
-      new ItemImage(
-        storedItems[i].src,
-        storedItems[i].alt,
-        storedItems[i].title,
-        storedItems[i].clicked,
-        storedItems[i].viewed);
-    }
-  // }
+  var storedItems = JSON.parse(localStorage.getItem('totalItems'));
+  for (var i = 0; i < storedItems.length; i++) {
+    new ItemImage(
+      storedItems[i].src,
+      storedItems[i].alt,
+      storedItems[i].title,
+      storedItems[i].clicked,
+      storedItems[i].viewed);
+  }
 }
 
 retrieveStorage();

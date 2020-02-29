@@ -4,7 +4,7 @@ BusMall is a catalog of assorted high-markup products provided to a captive audi
 
 BusMall wants to feature only the items in its catalog that are the most likely to sell.  Currently, this website is doing marketing analysis to test their potential customer items of interest.
 
-### *Gathering information*
+## Gathering information
 
 Each user will be asked to choose their favorite item from a series of randomly selected items.   Upon selecting your favorite the images will change, although some images may repeat after a *x-number* of rotations.
 
@@ -45,13 +45,34 @@ Changed non-repeating image to 2 turns.  Render a bar chart after 25 votes have 
     - updated the README files \| [`108beca`](https://github.com/cassandraortiz/bus-mall/pull/3/commits/108beca76c96a3d07d7f7c1868a5062df7f152b1) , [`ddd71b1`](https://github.com/cassandraortiz/bus-mall/pull/3/commits/ddd71b1b1ffddd1897bc8765ce6c53d24a42c7bd) , [`11cf527`](https://github.com/cassandraortiz/bus-mall/pull/3/commits/11cf5279114339efd30fceb138a433cd25ee3142)
 - Pull Request: [#4](https://github.com/cassandraortiz/bus-mall/pull/4)
   - Commits
-    - doing something...
-  
+    - fixed clicks \| [`a3289a3`](https://github.com/cassandraortiz/bus-mall/pull/4/commits/a3289a306557ed05587e840aabfc9acfeb66fa36)
+    - still working save \| [`471c5a4`](https://github.com/cassandraortiz/bus-mall/pull/4/commits/471c5a4e6c9949321f4b9b73018f59355f5b32c3)
+    - adding styling and hide/show sections[`64b630ff`](https://github.com/cassandraortiz/bus-mall/pull/4/commits/64b630ff434803fedc4bec1d0b936b6a2fc9d953)
+- Pull Request: [#5](https://github.com/cassandraortiz/bus-mall/pull/5)
+  - Commits
+    - minor tweaks \| [`b47cf8cc`](https://github.com/cassandraortiz/bus-mall/pull/5/commits/b47cf8ccc982c9435cc4809223c41f88b4720c8a)
+
+#### BRANCH: `cssStyling`
+
+- Pull Request: [#6](https://github.com/cassandraortiz/bus-mall/pull/6)
+  - Commits
+    - reset complete \| [`c8b32d81`](https://github.com/cassandraortiz/bus-mall/pull/6/commits/c8b32d81c086f24c87a8fb7ae87d0705cb9380bb)
+    - css styling and quiz again \| [`b1ef018f`](https://github.com/cassandraortiz/bus-mall/pull/6/commits/b1ef018f151f7d4c448748f5e846fbccb4d7d0f0)
+
+#### BRANCH: `localStorage`[(Requirements)](https://canvas.instructure.com/courses/1791697/assignments/13320253?return_to=https%3A%2F%2Fcanvas.instructure.com%2Fcalendar%23view_name%3Dmonth%26view_start%3D2020-02-28)
+
+- Pull Request: [#7](https://github.com/cassandraortiz/bus-mall/pull/7)
+  - Commits
+    - complete Local Storage \| [`7da7d5ef`](https://github.com/cassandraortiz/bus-mall/pull/7/commits/7da7d5efce0f71d267c98ef501f4e5d0d3582a20)
+    - updated readme
+
 ---
 
 ## Collaborators
 
 Currently, code demos during Class 11 & 12 have helped guide working in this website.
+
+I want to thank Chuck Li Villalobos for helping me understand the local storage.
 
 ---
 
@@ -66,4 +87,5 @@ Currently, code demos during Class 11 & 12 have helped guide working in this web
 [further chart help](https://canvasjs.com/javascript-charts/multi-series-bar-chart/) \| reference for double bar chart information.
 
 [remove li from UL](https://www.sitepoint.com/community/t/dom-remove-all-li-from-ul/3145) \| used function to reset list items.
+
 ---
