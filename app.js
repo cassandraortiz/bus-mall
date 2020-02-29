@@ -227,7 +227,7 @@ function hidePictures(){
 
 function renderCanvas(){
   var ctx = document.getElementById('barChart');
-  myChart = new Chart(ctx, {
+  var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
       labels: labelArray,
@@ -256,16 +256,19 @@ function saveLocalStorage(){
 }
 
 function retrieveStorage(){
-  var storedItems = JSON.parse(localStorage.getItem('totalItems'));
-  for (var i = 0; i < storedItems.length; i++) {
-    new ItemImage(
-      storedItems[i].src,
-      storedItems[i].alt,
-      storedItems[i].title,
-      storedItems[i].clicked,
-      storedItems[i].viewed);
+  if(localStorage.getItem('totalItems')){
+    var storedItems = JSON.parse(localStorage.getItem('totalItems'));
+    for (var i = 0; i < storedItems.length; i++) {
+      new ItemImage(
+        storedItems[i].src,
+        storedItems[i].alt,
+        storedItems[i].title,
+        storedItems[i].clicked,
+        storedItems[i].viewed);
+    }
   }
 }
+
 
 retrieveStorage();
 //------------------------
