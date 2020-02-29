@@ -3,9 +3,7 @@ html{
     background-image: url(img/mountains.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    /* background-position-y: -350px; */
     width:100%;
-    
 }
 
 /* HEADER SECTION
@@ -43,7 +41,6 @@ h1{
     color: green;
 }
 
-
 /* MAIN SECTION
 =====================*/
 
@@ -55,7 +52,6 @@ h1{
     text-align: center;
     padding: 20px auto;
     width: 100%;
-
 }
 
 /* RESULTS SECTION (TOP - SHOW FIRST)
@@ -97,7 +93,6 @@ li{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 36px;
     color: darkblue;
-
 }
 
 p{
